@@ -18,6 +18,14 @@ class BestSeller(BaseModel):
     questions = models.CharField(max_length=10, verbose_name='访问数量')
     s_time = models.CharField(max_length=30, verbose_name='爬取日期')
     category = models.CharField(max_length=50, verbose_name='类目名', default='')
+    reviews = models.CharField(max_length=100, verbose_name='评价数', default='')
+    goods_weight = models.CharField(max_length=40, verbose_name='重量', default='')
+    goods_size = models.CharField(max_length=100, verbose_name='尺寸', default='')
+    goods_put_away = models.CharField(max_length=30, verbose_name='上架时间', default='')
+    goods_asin = models.CharField(max_length=40, verbose_name='asin', default='')
+    goods_model = models.CharField(max_length=40, verbose_name='型号', default='')
+    goods_manufacturer = models.CharField(max_length=50, verbose_name='制造商', default='')
+    goods_rank = models.CharField(max_length=500, verbose_name='亚马逊曾经排名', default='')
 
     class Meta:
         db_table = 'TAB_BEST_SELLER'
