@@ -27,7 +27,7 @@ class AmazonSpiderView(View):
 
 
 class AmazonSpiderListView(View):
-    """开启亚马逊爬虫"""
+    """亚马逊查询"""
 
     def post(self, request):
         params = {'time': (1, str), 'page_index': (1, int), 'page_size': (1, int)}
@@ -55,6 +55,7 @@ class AmazonSpiderListView(View):
                 'brand': i.brand,
                 'questions': i.questions,
                 's_time': i.s_time,
+                'reviews': i.reviews,
             })
 
         rsp = {

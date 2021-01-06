@@ -79,6 +79,7 @@ def get_goods_detail(browser, goods):
             score = browser.find_element_by_xpath('.//span[@id="acrPopover"]').get_attribute("title")
             points_element = browser.find_elements_by_xpath('.//div[@id="feature-bullets"]/ul/li')
             img_url = browser.find_element_by_xpath('.//div[@id="imgTagWrapperId"]/img').get_attribute("src")
+            reviews = browser.find_element_by_xpath('.//span[@id="acrCustomerReviewText"]').text
         except Exception as e:
             print(goods_info['good_url'])
             print(e)
@@ -94,6 +95,7 @@ def get_goods_detail(browser, goods):
                 "score": '',
                 "point": '',
                 "img_url": '',
+                "reviews": '',
                 "questions": 0,
             }
             res.append(good_res)
@@ -129,6 +131,7 @@ def get_goods_detail(browser, goods):
             "score": score[:3] if len(score) else '',
             "point": point,
             "img_url": img_url,
+            "reviews": reviews,
             "questions": questions[:questions.rfind('answered') - 1] if len(questions) else '',
         }
         res.append(good_res)
