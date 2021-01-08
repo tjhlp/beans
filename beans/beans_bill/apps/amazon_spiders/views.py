@@ -56,6 +56,8 @@ class AmazonSpiderListView(View):
                 'questions': i.questions,
                 's_time': i.s_time,
                 'reviews': i.reviews,
+                'goods_weight': i.goods_weight,
+                'goods_size': i.goods_size,
             })
 
         rsp = {
