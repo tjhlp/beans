@@ -151,7 +151,7 @@ def get_goods_detail(browser, goods):
         print('The %s good calc:%ss ' % (num, cost_time))
         print('sum_time:%ss, avg_time calc:%ss ' % (sum_cost_time, avg_time))
         num += 1
-        break
+        # break
     return res
 
 
@@ -180,7 +180,7 @@ def run():
     for top_url in top_urls:
         goods = get_goods_url(browser, top_url)
         total_res.extend(get_goods_detail(browser, goods))
-        break
+        # break
     browser.quit()
 
     print('goods calc:%ss ' % (calc_time_interval(s_time, return_date('time'))))
