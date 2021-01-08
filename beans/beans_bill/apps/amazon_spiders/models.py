@@ -19,7 +19,7 @@ class BestSeller(BaseModel):
     s_time = models.CharField(max_length=30, verbose_name='爬取日期')
     category = models.CharField(max_length=50, verbose_name='类目名', default='')
     reviews = models.CharField(max_length=100, verbose_name='评价数', default='')
-    goods_weight = models.CharField(max_length=40, verbose_name='重量', default='')
+    goods_weight = models.CharField(max_length=100, verbose_name='重量', default='')
     goods_size = models.CharField(max_length=100, verbose_name='尺寸', default='')
     goods_put_away = models.CharField(max_length=30, verbose_name='上架时间', default='')
     goods_asin = models.CharField(max_length=40, verbose_name='asin', default='')

@@ -110,8 +110,16 @@ def get_goods_detail(browser, goods):
             except Exception as e:
                 print(e)
                 continue
-
+        tmp_list = {}
+        detail_list = {}
         try:
+            good_detail_list = browser.find_elements_by_xpath('.//table[@class="a-bordered"]//tr')
+            for good_detail in good_detail_list:
+                detail_name = good_detail.find_element_by_xpath('./td[1]').text
+                detail_info = good_detail.find_element_by_xpath('./td[2]').text
+                tmp_list[detail_name] = detail_info
+            detail_list['goods_weight'] = tmp_list['Weight']
+            detail_list['goods_size'] = tmp_list['Size']
             questions = browser.find_element_by_xpath('.//a[@id="askATFLink"]/span').text
         except Exception as e:
             questions = ''
@@ -134,6 +142,7 @@ def get_goods_detail(browser, goods):
             "reviews": reviews,
             "questions": questions[:questions.rfind('answered') - 1] if len(questions) else '',
         }
+        good_res.update(detail_list)
         res.append(good_res)
         cost_time = calc_time_interval(start_time, return_date('time'))
         sum_cost_time += cost_time
@@ -142,6 +151,7 @@ def get_goods_detail(browser, goods):
         print('The %s good calc:%ss ' % (num, cost_time))
         print('sum_time:%ss, avg_time calc:%ss ' % (sum_cost_time, avg_time))
         num += 1
+        break
     return res
 
 
@@ -170,14 +180,14 @@ def run():
     for top_url in top_urls:
         goods = get_goods_url(browser, top_url)
         total_res.extend(get_goods_detail(browser, goods))
-
+        break
     browser.quit()
 
     print('goods calc:%ss ' % (calc_time_interval(s_time, return_date('time'))))
 
-    if len(total_res) <= 40:
+    if len(total_res) <= 10:
+        print('数量不够')
         return total_res
-
     for good in total_res:
         good['s_time'] = datetime.datetime.now().strftime('%Y%m%d%H')
         print(good['rank'])
