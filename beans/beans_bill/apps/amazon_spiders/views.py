@@ -81,3 +81,12 @@ class AmazonTestView(View):
         logger.info("test:{}".format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
 
         return json_response(CODE_SUCCESS, datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+
+
+class AmazonBestTimeView(View):
+    """开启亚马逊爬虫"""
+
+    def post(self, request):
+        source_list1 = BestSeller.objects.values("s_time").distinct()
+
+        return json_response(CODE_SUCCESS, [i["s_time"] for i in list(source_list1)])
