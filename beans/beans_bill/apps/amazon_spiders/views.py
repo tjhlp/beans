@@ -87,6 +87,14 @@ class AmazonBestTimeView(View):
     """开启亚马逊爬虫"""
 
     def post(self, request):
-        source_list1 = BestSeller.objects.values("s_time").distinct()
+        params = {'time': (1, str)}
+        js, code = valid_body_js(request, params)
+        if code != CODE_SUCCESS:
+            logger.error("invalid param")
+            return json_response(code)
 
-        return json_response(CODE_SUCCESS, [i["s_time"] for i in list(source_list1)])
+        time_list = BestSeller.objects.filter(s_time__contains=js['time'])
+        rsp = [i.s_time for i in time_list]
+        rsp = list(set(rsp))
+
+        return json_response(CODE_SUCCESS, rsp)
