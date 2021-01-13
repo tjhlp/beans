@@ -188,12 +188,16 @@ def run():
     if len(total_res) <= 10:
         print('数量不够')
         return total_res
+    try:
+        BestSellerTime.objects.create(spider_time=datetime.datetime.now().strftime('%Y%m%d%H'))
+    except Exception as e:
+        print(str(e))
+
     for good in total_res:
         good['s_time'] = datetime.datetime.now().strftime('%Y%m%d%H')
         print(good['rank'])
         try:
             BestSeller.objects.create(**good)
-            BestSellerTime.objects.create(spider_time=good['s_time'])
         except Exception as e:
             print(str(e))
     return total_res
