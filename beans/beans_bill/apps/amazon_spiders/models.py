@@ -34,3 +34,18 @@ class BestSeller(BaseModel):
 
     def __str__(self):
         return '%s: %s' % (self.seller_id, self.name)
+
+
+class BestSellerTime(BaseModel):
+    """最佳售卖表时间"""
+
+    time_id = models.AutoField(verbose_name='ID', primary_key=True)
+    spider_time = models.CharField(max_length=30, verbose_name='爬虫时间')
+
+    class Meta:
+        db_table = 'TAB_BEST_SELLER_TIME'
+        verbose_name = '最佳售卖表时间'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return '%s: %s' % (self.time_id, self.spider_time)
