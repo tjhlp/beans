@@ -93,7 +93,7 @@ class AmazonBestTimeView(View):
             logger.error("invalid param")
             return json_response(code)
 
-        time_list = BestSellerTime.objects.filter(s_time__contains=js['time'])
+        time_list = BestSellerTime.objects.filter(spider_time__contains=js['time'])
         rsp = [i.spider_time for i in time_list]
         rsp = list(set(rsp))
 
