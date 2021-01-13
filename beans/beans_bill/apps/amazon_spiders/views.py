@@ -68,7 +68,7 @@ class AmazonSpiderListView(View):
 
 
 class AmazonTestView(View):
-    """开启亚马逊爬虫"""
+    """开启亚马逊爬虫测试"""
 
     def post(self, request):
         params = {'user_id': (1, str)}
@@ -84,7 +84,7 @@ class AmazonTestView(View):
 
 
 class AmazonBestTimeView(View):
-    """开启亚马逊爬虫"""
+    """亚马逊爬虫时间"""
 
     def post(self, request):
         params = {'time': (1, str)}
@@ -93,8 +93,8 @@ class AmazonBestTimeView(View):
             logger.error("invalid param")
             return json_response(code)
 
-        time_list = BestSeller.objects.filter(s_time__contains=js['time'])
-        rsp = [i.s_time for i in time_list]
+        time_list = BestSellerTime.objects.filter(s_time__contains=js['time'])
+        rsp = [i.spider_time for i in time_list]
         rsp = list(set(rsp))
 
         return json_response(CODE_SUCCESS, rsp)

@@ -193,6 +193,7 @@ def run():
         print(good['rank'])
         try:
             BestSeller.objects.create(**good)
+            BestSellerTime.objects.create(spider_time=good['s_time'])
         except Exception as e:
             print(str(e))
     return total_res
