@@ -82,7 +82,7 @@ def get_goods_detail(browser, goods):
             reviews = browser.find_element_by_xpath('.//span[@id="acrCustomerReviewText"]').text
         except Exception as e:
             print(goods_info['good_url'])
-            print(e)
+            # print(e)
             print("*" * 20)
             print(browser.page_source)
             print("*" * 20)
@@ -170,14 +170,15 @@ def run():
     top_urls = [
         "https://www.amazon.com/Best-Sellers-Electronics/zgbs/electronics/ref=zg_bs_pg_1?_encoding=UTF8&pg=1",
         "https://www.amazon.com/Best-Sellers-Electronics/zgbs/electronics/ref=zg_bs_pg_2?_encoding=UTF8&pg=2"]
-    "https://www.amazon.com/Best-Sellers-Electronics/zgbs/electronics/ref=zg_bs_pg_1?_encoding=UTF8&pg=1"
-    "https://www.amazon.com/Best-Sellers-Electronics/zgbs/electronics/ref=zg_bs_pg_2?_encoding=UTF8&pg=2"
+
     s_time = return_date('time')
 
     # browser.execute_script("var q=document.documentElement.scrollTop=100000" )
     print('start_spider')
     total_res = []
     for top_url in top_urls:
+        print(111)
+        print(top_url)
         goods = get_goods_url(browser, top_url)
         total_res.extend(get_goods_detail(browser, goods))
         # break
